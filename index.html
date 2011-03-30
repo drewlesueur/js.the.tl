@@ -44,7 +44,10 @@ $(window).load ->
     if language is "CoffeeScript"
       code = CoffeeScript.compile code
     eval code
-      
+  $(document.body).keydown (e) ->
+    if e.keyCode is 116
+      e.preventDefault()
+      $('#run').click()
     
 
 </script>
@@ -65,7 +68,7 @@ $(window).load ->
   &nbsp; &nbsp;
   <input type="radio" name="language" value="CoffeeScript" id="coffeescript-radio">
   <label for="coffeescript-radio">CoffeeScript</label>
-  <input type="button" id="run" value="Run">
+  <input type="button" id="run" value="Run(F5)">
 </div>
 <div id="editor" style="font-size: 30px; height: 1200px; width: 100%"></div>
 </body>
