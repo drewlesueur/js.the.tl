@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<style>
+  body, input {
+  font-family: Menlo, Monaco, 'Bitstream Vera Sans Mono', Courier, monospace;
+  }
+  input[type="button"] {
+  }
+</style>
+<script src="ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="theme-twilight.js" type="text/javascript" charset="utf-8"></script>
+<script src="theme-clouds.js" type="text/javascript" charset="utf-8"></script>
+<script src="theme-pastel_on_dark.js" type="text/javascript" charset="utf-8"></script>
+<script src="mode-javascript.js" type="text/javascript" charset="utf-8"></script>
+<script src="mode-coffee.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://inc.the.tl/underscore.js"></script>
+<script src="http://inc.the.tl/jquery.js"></script>
+<script src="http://inc.the.tl/coffeescript.js"></script>
+<script type="text/coffeescript">
+editor = ""
+JavaScriptMode = require('ace/mode/javascript').Mode
+CoffeeScriptMode = require('ace/mode/coffee').Mode
+javaScriptMode = new JavaScriptMode
+coffeeScriptMode = new CoffeeScriptMode
+languageMap =
+  CoffeeScript: coffeeScriptMode
+  JavaScript: javaScriptMode
+
+language = "JavaScript"
+$(window).load ->
+  editor = ace.edit 'editor'
+  editor.setTheme 'ace/theme/twilight'
+  editor.getSession().setMode javaScriptMode
+  editor.getSession().setTabSize(2)
+  editor.getSession().setUseSoftTabs(true);
+
+  $('[name="language"]').click ->
+    language = $(this).val()
+    mode = languageMap[language]
+    editor.getSession().setMode mode
+  $('#run').click ->
+    code = editor.getSession().getValue()
+    if language is "CoffeeScript"
+      code = CoffeeScript.compile code
+    eval code
+      
+    
+
+</script>
+<script>
+  var editor
+  window.onload == function() {
+        editor = ace.edit("editor");
+        editor.setTheme("ace/theme/twilight");
+        var JavaScriptMode = require('ace/mode/javascript').Mode;
+        editor.getSession().setMode(new JavaScriptMode());
+      };
+ </script>
+</head>
+<body>
+<div id="controls">
+  <input type="radio" name="language" value="JavaScript" id="javascript-radio">
+  <label for="javascript-radio">JavaScript</label>
+  &nbsp; &nbsp;
+  <input type="radio" name="language" value="CoffeeScript" id="coffeescript-radio">
+  <label for="coffeescript-radio">CoffeeScript</label>
+  <input type="button" id="run" value="Run">
+</div>
+<div id="editor" style="font-size: 30px; height: 1200px; width: 100%"></div>
+</body>
