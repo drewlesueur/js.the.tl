@@ -1,4 +1,4 @@
-var song = 
+song = 
   title: "Mi Vida Brilla"
   artist: "Aterciopelados"
   genre:  "Latin"

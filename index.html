@@ -3,7 +3,18 @@
 <head>
 <style>
   body, input {
-  font-family: Menlo, Monaco, 'Bitstream Vera Sans Mono', Courier, monospace;
+    font-family: Menlo, Monaco, 'Bitstream Vera Sans Mono', Courier, monospace;
+  }
+  #files {
+    position: absolute;
+    left: 0;
+    top: 100px;
+  }
+
+  #editor {
+    position: absolute;
+    left: 300px;
+    top: 100px;
   }
   input[type="button"] {
   }
@@ -49,8 +60,6 @@ $(window).load ->
   setLanguage = (lang, setRadio) ->
     if setRadio
       $('[name="language"][value="'+lang+'"]').attr "checked", true
-      console.log lang
-      console.log $('[name="language"]')
     language = lang
     mode = languageMap[language]
     editor.getSession().setMode mode
