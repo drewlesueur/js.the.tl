@@ -1,7 +1,25 @@
-numbers = [1, 2, 3, 4, 5, 6];
+var numbers = [1, 2, 3, 4, 5, 6];
 
-for (var i = 0; i < i.length; i++) {
-  setTimout(200, function(){
-    conosle.log(i);   
-  });
+var incorrectWay = function() {
+  for (var i = 0; i < numbers.length; i++) {
+    setTimeout(function(){
+      console.log(i);   
+    }, 1000);
+  }
 }
+
+
+var waitThenLog = function(i) {
+  setTimeout(function(){
+    console.log(i);   
+  }, 1000);
+}
+
+var correctWay = function() {
+  for (var i = 0; i < numbers.length; i++) {
+    waitThenLog(i);
+  }
+}
+
+incorrectWay();
+//correctWay();

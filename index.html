@@ -29,6 +29,7 @@
 <script src="http://inc.the.tl/underscore.js"></script>
 <script src="http://inc.the.tl/jquery.js"></script>
 <script src="http://inc.the.tl/coffeescript.js"></script>
+<script src="drews-mixins.js"></script>
 <script src="examples.js"></script>
 <script type="text/coffeescript">
 editor = ""
@@ -46,10 +47,14 @@ languageMap =
 language = "JavaScript"
 $(window).load ->
   for fileType, fileList of files
+    if fileType is "swp" then continue
     $('#files').append "<h2>#{fileType}</h2>"
     ul = $('<ul></ul>')
     for file, id in fileList
-      ul.append "<li><a class=\"file\" data-extension=\"#{fileType}\" data-id=\"#{id}\"  href='#'>#{file.name}</a></li>"
+      extra = ""
+      if fileType == "html"
+        extra = "<a href='examples/#{file.name}'>**</a>"
+      ul.append "<li><a class=\"file\" data-extension=\"#{fileType}\" data-id=\"#{id}\" href='#'>#{file.name}</a>#{extra}</li>"
     $('#files').append ul
 
   extensionMap = 

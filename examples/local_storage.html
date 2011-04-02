@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <script src="http://inc.the.tl/underscore.js"></script>
+  <script src="http://inc.the.tl/jquery.js"></script>
+  <script src="drews-mixins.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+       var times = localStorage.visits
+       if (!times) {
+         localStorage.visits = 1;
+       }
+       $('#number-of-times').text(localStorage.visits);
+
+       localStorage.visits = (localStorage.visits - 0) + 1;
+    });
+  </script>
+</head>
+<body>
+  you have been here <span id="number-of-times">0</span> times
+</body>
+</html>
+
