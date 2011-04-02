@@ -6,7 +6,7 @@
   <script src="drews-mixins.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
-      navigator.geolocaiton.getCurrentPosition(function(position){
+      navigator.geolocation.getCurrentPosition(function(position){
         var lat = position.coords.latitude;
         var lng = position.coords.longitude;
         var url = "http://maps.google.com/maps/api/staticmap?center=" +
