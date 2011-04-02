@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+  <script src="http://inc.the.tl/underscore.js"></script>
+  <script src="http://inc.the.tl/jquery.js"></script>
+  <script src="drews-mixins.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      navigator.geolocaiton.getCurrentPosition(function(position){
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
+        var url = "http://maps.google.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=12&size=400x400&sensor=false"
+      });
+    });
+  </script>
+</head>
+<body>
+  you have been here <span id="number-of-times">0</span> times
+</body>
+</html>
+
