@@ -1,3 +1,30 @@
-ajax
-json
-jsonp (flikr or facebook demo)
+
+<!doctype html>
+<html>
+<head>
+  <script src="http://inc.the.tl/underscore.js"></script>
+  <script src="http://inc.the.tl/jquery.js"></script>
+  <script src="../drews-mixins.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#load-link').click(function(e){
+        e.preventDefault();
+        load();
+      });
+      var load = function() {
+        $.ajax({
+          'url' : "todo.txt",
+          'type' : "GET",
+          'success': function(data) {
+            $('#results').text(data);
+          }  
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <div id="results"></div>
+  <a id="load-link" href="#">load</a>
+</body>
+</html>
