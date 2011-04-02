@@ -1,0 +1,1 @@
+var files = {"js":{"name":"variables.js","content":"var a = 1;\nvar b = 2;\nconsole.log(a+b);\n"}};

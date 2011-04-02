@@ -14,18 +14,23 @@
 <script src="theme-pastel_on_dark.js" type="text/javascript" charset="utf-8"></script>
 <script src="mode-javascript.js" type="text/javascript" charset="utf-8"></script>
 <script src="mode-coffee.js" type="text/javascript" charset="utf-8"></script>
+<script src="mode-html.js" type="text/javascript" charset="utf-8"></script>
 <script src="http://inc.the.tl/underscore.js"></script>
 <script src="http://inc.the.tl/jquery.js"></script>
 <script src="http://inc.the.tl/coffeescript.js"></script>
+<script src="examples.js"></script>
 <script type="text/coffeescript">
 editor = ""
 JavaScriptMode = require('ace/mode/javascript').Mode
 CoffeeScriptMode = require('ace/mode/coffee').Mode
+HtmlMode = require('ace/mode/html').Mode
 javaScriptMode = new JavaScriptMode
 coffeeScriptMode = new CoffeeScriptMode
+htmlMode = new HtmlMode
 languageMap =
   CoffeeScript: coffeeScriptMode
   JavaScript: javaScriptMode
+  html: htmlMode
 
 language = "JavaScript"
 $(window).load ->
@@ -43,23 +48,19 @@ $(window).load ->
     code = editor.getSession().getValue()
     if language is "CoffeeScript"
       code = CoffeeScript.compile code
-    eval code
+      eval code
+    else if language is "JavaScript"
+      eval code
+    else if language is "html"
+      url = "data:text/html,#{encodeURIComponent(code)}"
+      window.open url, (new Date()).getTime()
+
+
   $(document.body).keydown (e) ->
     if e.keyCode is 116
       e.preventDefault()
       $('#run').click()
-    
-
 </script>
-<script>
-  var editor
-  window.onload == function() {
-        editor = ace.edit("editor");
-        editor.setTheme("ace/theme/twilight");
-        var JavaScriptMode = require('ace/mode/javascript').Mode;
-        editor.getSession().setMode(new JavaScriptMode());
-      };
- </script>
 </head>
 <body>
 <div id="controls">
@@ -68,7 +69,13 @@ $(window).load ->
   &nbsp; &nbsp;
   <input type="radio" name="language" value="CoffeeScript" id="coffeescript-radio">
   <label for="coffeescript-radio">CoffeeScript</label>
+  &nbsp; &nbsp;
+  <input type="radio" name="language" value="html" id="html-radio">
+  <label for="html-radio">html</label>
   <input type="button" id="run" value="Run(F5)">
 </div>
+<div id="files">
+</div>
 <div id="editor" style="font-size: 30px; height: 1200px; width: 100%"></div>
+
 </body>
