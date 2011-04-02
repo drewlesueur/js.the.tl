@@ -9,13 +9,14 @@
       navigator.geolocaiton.getCurrentPosition(function(position){
         var lat = position.coords.latitude;
         var lng = position.coords.longitude;
-        var url = "http://maps.google.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=12&size=400x400&sensor=false"
+        var url = "http://maps.google.com/maps/api/staticmap?center=" +
+        lat + "," + lng + "&zoom=12&size=400x400&sensor=false"
+        $('#map').attr("src", url);
       });
     });
   </script>
 </head>
 <body>
-  you have been here <span id="number-of-times">0</span> times
+  <img id="map" src="http://maps.google.com/maps/api/staticmap?center=40.714728,-73.998672&zoom=12&size=400x400&sensor=false" />
 </body>
 </html>
-
