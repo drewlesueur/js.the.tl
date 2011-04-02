@@ -1,0 +1,19 @@
+vars
+objects
+functions
+callbacks
+setTimeout
+
+if statements
+also objects with if statements
+
+
+
+Dom
+Geolocation
+canvas
+
+
+cgi node
+chi coffee
+
