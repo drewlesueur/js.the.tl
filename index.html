@@ -34,6 +34,12 @@ languageMap =
 
 language = "JavaScript"
 $(window).load ->
+  for fileType, fileList of files
+    $('#files').append "<h2>#{fileType}</h2>"
+    console.log fileList
+    for file in fileList
+      $('#files').append "<a href='#'>a#{file.name}</a>"
+
   editor = ace.edit 'editor'
   editor.setTheme 'ace/theme/twilight'
   editor.getSession().setMode javaScriptMode
