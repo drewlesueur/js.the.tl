@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+  <script src="http://inc.the.tl/underscore.js"></script>
+  <script src="http://inc.the.tl/jquery.js"></script>
+  <script src="../drews-mixins.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var elem = document.getElementById('canvas');
+      var context = elem.getContext('2d');
+      context.fillStyle   = '#00f'; // blue
+      context.strokeStyle = '#f00'; // red
+      context.lineWidth   = 4;
+      
+      // Draw some rectangles.
+      context.fillRect  (0,   0, 150, 50);
+      context.strokeRect(0,  60, 150, 50);
+      context.clearRect (30, 25,  90, 60);
+      context.strokeRect(30, 25,  90, 60);
+    });
+  </script>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+</body>
+</html>
