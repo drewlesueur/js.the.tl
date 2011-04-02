@@ -36,9 +36,34 @@ language = "JavaScript"
 $(window).load ->
   for fileType, fileList of files
     $('#files').append "<h2>#{fileType}</h2>"
-    console.log fileList
-    for file in fileList
-      $('#files').append "<a href='#'>a#{file.name}</a>"
+    ul = $('<ul></ul>')
+    for file, id in fileList
+      ul.append "<li><a class=\"file\" data-extension=\"#{fileType}\" data-id=\"#{id}\"  href='#'>#{file.name}</a></li>"
+    $('#files').append ul
+
+  extensionMap = 
+    'js': 'JavaScript'
+    'coffee': 'CoffeeScript'
+    'html': 'html'
+
+  setLanguage = (lang, setRadio) ->
+    if setRadio
+      $('[name="language"][value="'+lang+'"]').attr "checked", true
+      console.log lang
+      console.log $('[name="language"]')
+    language = lang
+    mode = languageMap[language]
+    editor.getSession().setMode mode
+
+
+  $('.file').click ->
+    extension = $(this).attr "data-extension"
+    id = $(this).attr "data-id"
+    content = files[extension][id].content; 
+    lang = extensionMap[extension]
+    setLanguage lang, true
+    editor.getSession().setValue content
+
 
   editor = ace.edit 'editor'
   editor.setTheme 'ace/theme/twilight'
@@ -47,9 +72,8 @@ $(window).load ->
   editor.getSession().setUseSoftTabs(true);
 
   $('[name="language"]').click ->
-    language = $(this).val()
-    mode = languageMap[language]
-    editor.getSession().setMode mode
+    setLanguage $(this).val()
+
   $('#run').click ->
     code = editor.getSession().getValue()
     if language is "CoffeeScript"

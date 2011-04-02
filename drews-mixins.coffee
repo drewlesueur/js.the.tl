@@ -66,7 +66,7 @@ _.mixin # underscore.js mixin
         _.each to_dos, (func, id) ->
           if not(id of return_values)
             all_done = false
-            _.breakLoop()
+            #_.breakLoop()
         if all_done is true
           callback(return_values)
     _.each to_dos, (to_do, id) ->
