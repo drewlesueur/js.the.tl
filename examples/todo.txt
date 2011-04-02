@@ -1,0 +1,7 @@
+also objects with if statements
+coffeescript =>
+lexical scoped variables
+
+node.js do many things at once
+
+cgi

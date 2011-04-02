@@ -75,7 +75,8 @@ $(window).load ->
     id = $(this).attr "data-id"
     content = files[extension][id].content; 
     lang = extensionMap[extension]
-    setLanguage lang, true
+    if extension isnt "txt"
+      setLanguage lang, true
     editor.getSession().setValue content
 
 
